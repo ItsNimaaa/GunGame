@@ -1,4 +1,4 @@
-package net.pixelors.styx;
+	package net.pixelors.styx;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -16,6 +16,8 @@ public class GunGameMain extends JavaPlugin {
 	public ArenaManager manager;
 
 	public Location mainSpawn;
+	 
+	public Arena arena;
 
 	@Override
 	public void onEnable() {
@@ -33,7 +35,7 @@ public class GunGameMain extends JavaPlugin {
 
 		this.manager.readDataFromConfig();
 
-		Bukkit.getPluginManager().registerEvents(new GunGameListener(this), this);
+		Bukkit.getPluginManager().registerEvents(new GunGameListener(this, arena), this);
 
 		System.out.println(prefix + "The Plugin " + this.getDescription().getName() + " Version "
 				+ this.getDescription().getVersion() + " loaded!");
