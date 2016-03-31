@@ -23,22 +23,27 @@ public class GunGameListener implements Listener {
 	public String prefix = "§6[§bGunGame§6] ";
 	
 	public GunGameMain plugin;
+	public Arena arena;
 	
 	public GunGameListener(GunGameMain main) {
 		this.plugin = main;
 	}
 	
+	
+	
 	@EventHandler
 	public void onSignInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		
+		
 			if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-				if (e.getClickedBlock().getState() instanceof Sign) {
+				if (e.getClickedBlock() instanceof Sign);
 					Sign s = (Sign) e.getClickedBlock().getState();
 					
 
 					if (s.getLine(0).equalsIgnoreCase("§6[§bGunGame§6]")) {
-						p.getInventory().clear();
+					
+						this.arena.joinLobby(p);
 						
 						
 						
@@ -47,11 +52,15 @@ public class GunGameListener implements Listener {
 					}
 				}
 			}
-	}
+	
+	
+	
+	
+	
 	
 	@EventHandler
 	public void onSignWrite(SignChangeEvent e) {
-		if (e.getLine(0).equalsIgnoreCase("[GunGame]") && e.getPlayer().hasPermission("gungame.sign.create")) {
+		if (e.getLine(0).equalsIgnoreCase("[gg]") && e.getPlayer().hasPermission("gungame.sign.create")) {
 			int arenaID = -1;
 			try {
 				arenaID = Integer.valueOf(e.getLine(1));
@@ -103,6 +112,7 @@ public class GunGameListener implements Listener {
 			
 			if (l != null) {
 				p.teleport(l);
+				
 			}
 			
 			if (p.getKiller() != null) {
