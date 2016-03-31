@@ -25,9 +25,12 @@ public class GunGameListener implements Listener {
 	public GunGameMain plugin;
 	public Arena arena;
 	
-	public GunGameListener(GunGameMain main) {
+	public GunGameListener(GunGameMain main, Arena arena) {
 		this.plugin = main;
+		this.arena = arena;
 	}
+	
+	
 	
 	
 	
